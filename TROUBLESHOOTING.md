@@ -31,21 +31,35 @@ This commonly happens in:
 
 #### Solution 1: Use Environment Variables (Recommended for CI/CD)
 
-Instead of using `wrangler login`, authenticate using environment variables:
+Instead of using `wrangler login`, authenticate using environment variables.
 
-1. Get your Cloudflare API token from the [Cloudflare Dashboard](https://dash.cloudflare.com/profile/api-tokens)
-2. Set the `CLOUDFLARE_API_TOKEN` environment variable:
+**For local development:**
+
+1. Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Get your Cloudflare API token from the [Cloudflare Dashboard](https://dash.cloudflare.com/profile/api-tokens)
+
+3. Edit `.env` and add your credentials:
+   ```bash
+   CLOUDFLARE_API_TOKEN=your-actual-api-token
+   CLOUDFLARE_ACCOUNT_ID=your-actual-account-id
+   ```
+
+4. Wrangler will automatically use these environment variables
+
+**For terminal/shell usage:**
+
+Set the environment variables in your shell:
 
 ```bash
 export CLOUDFLARE_API_TOKEN="your-api-token-here"
-```
-
-3. Or set `CLOUDFLARE_ACCOUNT_ID` along with your API token:
-
-```bash
 export CLOUDFLARE_ACCOUNT_ID="your-account-id"
-export CLOUDFLARE_API_TOKEN="your-api-token-here"
 ```
+
+**For CI/CD (GitHub Actions, GitLab CI, etc.):**
 
 For GitHub Actions, add these as [repository secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) and use them in your workflow:
 
@@ -56,6 +70,8 @@ For GitHub Actions, add these as [repository secrets](https://docs.github.com/en
     CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
   run: npm run deploy
 ```
+
+See [`.github/workflows/deploy.yml.example`](./.github/workflows/deploy.yml.example) for a complete GitHub Actions workflow example.
 
 #### Solution 2: Disable Keyring Usage
 
