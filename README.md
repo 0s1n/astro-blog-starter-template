@@ -55,6 +55,14 @@ All commands are run from the root of the project, from a terminal:
 | `npm run build && npm run deploy` | Deploy your production site to Cloudflare        |
 | `npm wrangler tail`               | View real-time logs for all Workers              |
 
+## 🔧 Troubleshooting
+
+If you encounter issues while working with this template, check out our [Troubleshooting Guide](./TROUBLESHOOTING.md) for common problems and solutions, including:
+
+- GNOME keyring errors when using Wrangler
+- Authentication issues in CI/CD environments
+- Deployment configuration tips
+
 ## 👀 Want to learn more?
 
 Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
